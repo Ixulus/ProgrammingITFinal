@@ -331,7 +331,7 @@ def WinCheck(Click, Buttons):
         Button3['text'] == 'X' and Button5['text'] == 'X' and Button7['text'] == 'X'):             # Diagonal2
         PlayerWins()
 
-    elif Plays == 5:  # The user can only make 5 plays. Once reached, game is considered a tie.
+    elif Plays == 5:                 # The user can only make 5 plays. Once reached, game is considered a tie.
 
         messagebox.showinfo("Tic-Tac-Toe", "It is a Tie")
         exit()
