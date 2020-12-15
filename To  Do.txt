@@ -1,6 +1,6 @@
 Kyle Arnold
 Programming for IT – To Do List
-11/30/20
+12/10/20
 
 * Anything with a asterisk is complete
 ! Anything with an exclamation point is difficult, and a remedy is not found yet
