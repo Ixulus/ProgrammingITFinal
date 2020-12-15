@@ -17,8 +17,8 @@ window.title("Tic Tac Toe")                    # Name the window "Tic Tac Toe"
 Click = True                                   # The Click variable is used to determine who's turn it is
 Plays = 0                                      # The Plays variable is used to detect a tie
 
-
-Button1 = Button(window, text = ' ', font = 'Arial 20', bg = 'white', fg = 'black', height = 2, width = 4, command = lambda: PlayerMove(Button1))   # The lambda function used here is used to point to a function with a parameter. Here, it is Button 1.
+# The lambda function used here is used to point to a function with a parameter. Here, it is Button 1.
+Button1 = Button(window, text = ' ', font = 'Arial 20', bg = 'white', fg = 'black', height = 2, width = 4, command = lambda: PlayerMove(Button1))   
 Button1.grid(row = 3, column = 0)
 
 Button2 = Button(window, text = ' ', font = 'Arial 20', bg = 'white', fg = 'black', height = 2, width = 4, command = lambda: PlayerMove(Button2))
@@ -45,7 +45,7 @@ Button8.grid(row=5, column=1)
 Button9 = Button(window, text = ' ', font = 'Arial 20', bg = 'white', fg = 'black', height = 2, width = 4, command = lambda: PlayerMove(Button9))
 Button9.grid(row=5, column=2)
 
-Buttons = [Button1, Button2, Button3, Button4, Button5, Button6, Button7, Button8, Button9]
+Buttons = [Button1, Button2, Button3, Button4, Button5, Button6, Button7, Button8, Button9]    # Gather the buttons into a list called Buttons
 
 def PlayerMove(Buttons):                              # The game will always start on user's turn
 
