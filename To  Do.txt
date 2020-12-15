@@ -1,0 +1,17 @@
+Kyle Arnold
+Programming for IT – To Do List
+11/30/20
+
+* Anything with a asterisk is complete
+! Anything with an exclamation point is difficult, and a remedy is not found yet
+
+*1.	Learn how to use tkinter to a basic level
+*2.	Develop a window, learn to name it
+*3.	Learn the button function for tkinter
+*4.	Line the buttons into a 3 by 3 grid (rows, columns)
+*5.	Use button#[“text”] = “X” or “O” to assign letters to the button
+!*6.	Create an algorithm for the computer to detect winning moves for both itself and the user, block user winning moves
+*7.	Create variable Click and assign it true or false (True = User’s move, False = Comp’s Move)
+*8.	Algorithm to check for a win, this will run after every move
+*9.	Variable to detect if board is full, this will be a tie
+!10.	Debug the computer, works 9 out of 10 times (Sometimes the computer will not make a move, and the player can make an extra move)
