@@ -7,6 +7,8 @@
 
 
 import random                                  # Import modules needed for program
+import datetime
+import os
 from tkinter import messagebox
 from tkinter import *
 
@@ -17,8 +19,9 @@ window.title("Tic Tac Toe")                    # Name the window "Tic Tac Toe"
 Click = True                                   # The Click variable is used to determine who's turn it is
 Plays = 0                                      # The Plays variable is used to detect a tie
 
-# The lambda function used here is used to point to a function with a parameter. Here, it is Button 1.
-Button1 = Button(window, text = ' ', font = 'Arial 20', bg = 'white', fg = 'black', height = 2, width = 4, command = lambda: PlayerMove(Button1))   
+
+
+Button1 = Button(window, text = ' ', font = 'Arial 20', bg = 'white', fg = 'black', height = 2, width = 4, command = lambda: PlayerMove(Button1))   # The lambda function used here is used to point to a function with a parameter. Here, it is Button 1.
 Button1.grid(row = 3, column = 0)
 
 Button2 = Button(window, text = ' ', font = 'Arial 20', bg = 'white', fg = 'black', height = 2, width = 4, command = lambda: PlayerMove(Button2))
@@ -45,7 +48,7 @@ Button8.grid(row=5, column=1)
 Button9 = Button(window, text = ' ', font = 'Arial 20', bg = 'white', fg = 'black', height = 2, width = 4, command = lambda: PlayerMove(Button9))
 Button9.grid(row=5, column=2)
 
-Buttons = [Button1, Button2, Button3, Button4, Button5, Button6, Button7, Button8, Button9]    # Gather the buttons into a list called Buttons
+Buttons = [Button1, Button2, Button3, Button4, Button5, Button6, Button7, Button8, Button9]
 
 def PlayerMove(Buttons):                              # The game will always start on user's turn
 
@@ -202,13 +205,13 @@ def CompColumn(Buttons):                                   # This function is sa
             print("Column2")
             if Button['text'] == " ":
                 Button['text'] = "O"
-                PlayerMove(Buttons)
+
+        PlayerMove(Buttons)
         return
     else:
         pass                                               # If only 1 spot is taken, move to Column3
 
     for Button in Column3:                                 # Loop through Column3
-        print("Column3")
         if Button['text'] == 'X':
             Column3countX += 1
         elif Button['text'] == 'O':
@@ -331,10 +334,10 @@ def WinCheck(Click, Buttons):
         Button3['text'] == 'X' and Button5['text'] == 'X' and Button7['text'] == 'X'):             # Diagonal2
         PlayerWins()
 
-    elif Plays == 5:                 # The user can only make 5 plays. Once reached, game is considered a tie.
-
+    elif Plays == 5:  # The user can only make 5 plays. Once reached, game is considered a tie.
+        Winner = "No one"
         messagebox.showinfo("Tic-Tac-Toe", "It is a Tie")
-        exit()
+        GameRecord(Winner)
 
     elif Click == False:
         CompRow(Buttons)
@@ -344,12 +347,39 @@ def WinCheck(Click, Buttons):
 
 def PlayerWins():                                               # Player has won
     messagebox.showinfo('Tic Tac Toe', 'You have won!')         # Display message that player has won
-    exit()
+    Winner = "Player"
+    GameRecord(Winner)
 
 
 def CompWins():                                                 # Computer has won
     messagebox.showinfo('Tic Tac Toe', 'You have lost!')        # Display message that computer has won
-    exit()
+    Winner = 'Computer'
+    GameRecord(Winner)
+
+
+def GameRecord(Winner):
+
+    Folder = 'Game Recordings'                                                                  # Create a variable named "Game Recordings"
+    try:                                                                                        # See if Game Recordings folder exists and if not, create it
+        os.mkdir(Folder)
+        print(Folder + " has been created.\n")                                                  
+    except FileExistsError:                                                                     # If Game Recordings exists, just print that it already exists and move on
+        print(Folder + " already exists.\n")
+
+    Time = datetime.datetime.now()                                                              # Get the current time and apply it to variable "Time"
+    FileTime = (Time.strftime("Date -%Y-%m-%d  Time - %H.%M.%S"))                               # Make a new variable of the reformatted "Time" variable, set it to >> Date - Y,M,D  Time - H,M,S
+    File = open(os.path.join("Game Recordings", FileTime + ".txt"), 'w')                        # Write the file to the "Game Recordings" folder
+
+    Line1 = (Button1['text'] + ' | ' + Button2['text'] + ' | ' + Button3['text'] + "\n")        # Variable Line1 is >  1 | 2 | 3
+    Line2 = (Button4['text'] + ' | ' + Button5['text'] + ' | ' + Button6['text'] + "\n")        # Variable Line2 is >  4 | 5 | 6
+    Line3 = (Button7['text'] + ' | ' + Button8['text'] + ' | ' + Button9['text'] + "\n")        # Variable Line3 is >  7 | 8 | 9
+
+    File.write(Line1)                                                                           # Write Line1 to File
+    File.write("---------\n")                                                                   # Space to show seperation in rows
+    File.write(Line2)                                                                           # Write Line2 to File
+    File.write("---------\n")                                                                   # Space to show seperation in rows
+    File.write(Line3)                                                                           # Write Line3 to File
+    File.write("\n\n" + Winner + " won")                                                        # Two new lines, then write out who the winner is to File.
 
 
 window.mainloop()
